@@ -13,7 +13,7 @@ REPO_PATH="/repos/$(echo ${REPOSITORY_URL} | sed 's/[^a-zA-Z0-9]/-/g')"
 if ! [ -d ${REPO_PATH} ] ; then
   git clone -q --bare ${REPOSITORY_URL} ${REPO_PATH}
 else
-  git --git-dir=${REPO_PATH} fetch -q --prune origin refs/heads/*:refs/heads/*
+  git --git-dir=${REPO_PATH} fetch -q --prune --force origin refs/heads/*:refs/heads/*
 fi
 
 git --git-dir=${REPO_PATH} describe --abbrev=0 --tags --match "*.*.*" ${BRANCH}
